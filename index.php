@@ -5,8 +5,13 @@
 </head>
 <body>
 <?php
-    include_once './routing/frontController.php';
-    echo render();
+
+include_once './routing/FrontController.php';
+
+$frontController = new FrontController();
+
+echo $frontController->render();
+
 ?>
 </body>
 </html>

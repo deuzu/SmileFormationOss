@@ -1,21 +1,23 @@
 <?php
 
-    include_once 'controller/menuController.php';
-    include_once 'controller/loginController.php';
-    include_once 'controller/userController.php';
-    include_once 'controller/trainerController.php';
-    include_once 'controller/planningController.php';
-    include_once 'controller/showPlanningController.php';
-    include_once 'manager/sessionManager.php';
-    include_once 'controller/signUpController.php';
-   
-    function render(){
+include_once 'controller/menuController.php';
+include_once 'controller/loginController.php';
+include_once 'controller/userController.php';
+include_once 'controller/trainerController.php';
+include_once 'controller/planningController.php';
+include_once 'controller/showPlanningController.php';
+include_once 'manager/sessionManager.php';
+include_once 'controller/signUpController.php';
 
+class FrontController
+{
+    public function render()
+    {
         //Anonymous controller
         if(!isUserLoggedIn()){
 
             if(isset($_GET['action']) && $_GET['action']=='signup'){
-  
+
                 //Sign up form
                 return renderSignUpForm();
             }else{
@@ -78,3 +80,4 @@
             return "nothing to display";
         }
     }
+}
