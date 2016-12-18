@@ -2,18 +2,32 @@
 
 namespace SmileOSS\Lab\OOP\Routing;
 
-include_once 'controller/menuController.php';
-include_once 'controller/loginController.php';
-include_once 'controller/userController.php';
-include_once 'controller/trainerController.php';
-include_once 'controller/planningController.php';
-include_once 'controller/showPlanningController.php';
-include_once 'manager/sessionManager.php';
-include_once 'controller/signUpController.php';
+use SmileOSS\Lab\OOP\Controller\MenuController;
+
+// include_once 'controller/menuController.php';
+// include_once 'controller/loginController.php';
+// include_once 'controller/userController.php';
+// include_once 'controller/trainerController.php';
+// include_once 'controller/planningController.php';
+// include_once 'controller/showPlanningController.php';
+// include_once 'manager/sessionManager.php';
+// include_once 'controller/signUpController.php';
 
 class FrontController
 {
     public function render()
+    {
+        $controllerName = sprintf('SmileOSS\Lab\OOP\Controller\%sController', ucfirst($_GET['controller']));
+        $controller = new $controllerName();
+        $methodName = $_GET['action'].'Action';
+
+        return $controller->$methodName();
+    }
+
+    /**
+     * @deprecated
+     */
+    public function renderOld()
     {
         //Anonymous controller
         if(!isUserLoggedIn()){
