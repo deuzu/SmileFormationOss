@@ -1,5 +1,7 @@
 <?php
 
+namespace SmileOSS\Lab\OOP\Routing;
+
 include_once 'controller/menuController.php';
 include_once 'controller/loginController.php';
 include_once 'controller/userController.php';

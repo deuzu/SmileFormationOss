@@ -6,7 +6,9 @@
 <body>
 <?php
 
-include_once './routing/FrontController.php';
+use SmileOSS\Lab\OOP\Routing\FrontController;
+
+require __DIR__.'/vendor/autoload.php';
 
 $frontController = new FrontController();
 
