@@ -1,5 +1,16 @@
-# FormationOSS
+FormationOSS
+============
+
 Formation OSS de PHP avancé
+
+# Installation
+
+```bash
+$ composer install
+$ mysql -u root -p < FormationOSS.sql
+```
+
+Homepage => /?controller=planning&action=list
 
 # Vues
 Creation de la base >
