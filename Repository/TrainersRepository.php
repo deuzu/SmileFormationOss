@@ -12,7 +12,9 @@ class TrainersRepository
         $dbh = new SqlDriver();
         $dbh_con = $dbh->getDatabaseConnection();
 
-        $results = $dbh_con->query('SELECT * FROM trainers');
+        $results = $dbh_con->prepare("SELECT * FROM trainers");
+        $results->execute();
+
 
         return $results->fetchAll();
     }

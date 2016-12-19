@@ -15,8 +15,7 @@ class TrainerController
         $trainers->getAllTrainers();
 
         //display it
-        TemplateEngine::render(__DIR__.'/../views/listTrainersView.php',['trainers' => $trainers]);
-
+        TemplateEngine::render(__DIR__.'/../views/planning/listTrainersView.php', ['trainers' => $trainers]);
     }
 
     public function editAction()
