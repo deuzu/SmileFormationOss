@@ -24,8 +24,7 @@ class LoginController
                 $password = $_POST["password"];
 
                 createSession($login, $password);
-                TemplateEngine::render(__DIR__.'/../views/planning/list.php', ['role' => 'ADMIN']);
-                //header("Location:?controller=planning&action=list");
+                header("Location:?controller=planning&action=list");
             }
         }
 
@@ -36,7 +35,6 @@ class LoginController
     public function logoutAction()
     {
         destroySession();
-        TemplateEngine::render(__DIR__.'/../views/loginView.php');
-        //header("Location:?controller=login&action=login");
+        header("Location:?controller=login&action=login");
     }
 }
