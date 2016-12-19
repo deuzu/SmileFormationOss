@@ -1,9 +1,16 @@
 <?php
 
+namespace SmileOSS\Lab\OOP\Services;
+
+class SqlDriver
+{
     function getDatabaseConnection(){
         $user = 'root';
-        $pass = 'root';
+        $pass = '';
         $bdd = 'FormationOSS';
 
         return new PDO('mysql:host=localhost;dbname='.$bdd, $user, $pass);
     }
+
+}
+    
