@@ -3,11 +3,12 @@
 namespace SmileOSS\Lab\OOP\Controller;
 
 use SmileOSS\Lab\OOP\Templating\TemplateEngine;
+use SmileOSS\Lab\OOP\manager;
 
-require_once './manager/planningManager.php';
+require_once './manager/PlanningManager.php';
 require_once './form/createPlanningForm.php';
 require_once './form/editPlanningForm.php';
-require_once './repository/planningRepository.php';
+//require_once './repository/PlanningRepository.php';
 
 class PlanningController
 {

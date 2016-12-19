@@ -2,7 +2,7 @@
 
 // deprecated Use PlanningController instead
 
-require_once './repository/planningRepository.php';
+require_once './repository/PlanningRepository.php';
 
     /**
      * retrieve the planning from table Planning
