@@ -6,7 +6,10 @@ require_once("./form/signUpForm.php");
 
 class SignUpController
 {
-    public function renderSignUpForm(){
+    public function signUpAction(){
+        
+                
+
 
         If(isset($_POST['valider'])){
 
@@ -30,6 +33,8 @@ class SignUpController
 
 
         }
+        
+        TemplateEngine::render(__DIR__.'/../views/signUp/signUp.php', []);
 
         include("./views/signUpView.php");
     }
