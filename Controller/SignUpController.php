@@ -1,18 +1,15 @@
 <?php
 
 namespace SmileOSS\Lab\OOP\Controller;
+use SmileOSS\Lab\OOP\Templating\TemplateEngine;
 
-require_once("./form/signUpForm.php");
+require_once("./form/SignUpForm.php");
 
 class SignUpController
 {
-    public function signUpAction(){
-        
-                
-
-
-        If(isset($_POST['valider'])){
-
+    public function signUpAction()
+    {
+        if (isset($_POST['valider'])) {
             if(isset($_POST['lastName'])){ $userLastName  =  $_POST['lastName'] ;}
             if(isset($_POST['firstName'])){ $userFirstName   = $_POST['firstName'];}
             if(isset($_POST['password'])){  $userPsw =  $_POST['password'];}
@@ -20,22 +17,17 @@ class SignUpController
             if(isset($_POST['password'])){ $userPhone  = $_POST['phone'];}
             if(isset($_POST['email'])){ $userEmail  = $_POST['email'];}
 
+            $errorForm = new SignUpForm();
             //Appel de la fonction validateUser qui est définis dans le signUpForm
-            $errorForm = validateUser($userLastName,$userLogin,$userPsw);
+            $errorForm->validateUser($userLastName, $userLogin, $userPsw);
 
-            if (($errorForm==false)){
-
+            if ($errorForm==false){
                 //S'il n'ya pas d'erreurs sur le formulaire saisi, je crée un utilisateur et je le redirige vers la page du login avec une action=""
                 createUser($userLogin,$userPsw,'USER',$userFirstName,$userLastName,$userPhone,$userEmail);
-                header('Location:?action=');
-
+                header('Location:?controller=planning&action=list');
             }
-
-
         }
         
-        TemplateEngine::render(__DIR__.'/../views/signUp/signUp.php', []);
-
-        include("./views/signUpView.php");
+        TemplateEngine::render(__DIR__.'/../views/signUp/signUp.php', ['errorForm' => $errorForm]);
     }
 }
