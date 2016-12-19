@@ -5,7 +5,7 @@ namespace SmileOSS\Lab\OOP\Controller;
 require_once './manager/sessionManager.php';
 require_once './form/loginForm.php';
 
-class LoginController
+class LoginController extends ParentController
 {
     //si le formulaire est soumis, je verifie les erreurs > form ==> check_form()
     //affiche le formulaire avec les erreurs si il y en a > view ==> display_errors()
@@ -24,8 +24,7 @@ class LoginController
                 header("Location:?controller=planning&action=list");
             }
         }
-
-        include './views/loginView.php';
+        parent::render('./views/loginView.php',$error);      
     }
 
     public function logoutAction()

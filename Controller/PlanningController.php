@@ -2,20 +2,19 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-use SmileOSS\Lab\OOP\Templating\TemplateEngine;
 
 require_once './manager/planningManager.php';
 require_once './form/createPlanningForm.php';
 require_once './form/editPlanningForm.php';
 require_once './repository/planningRepository.php';
 
-class PlanningController
+class PlanningController extends ParentController
 {
     public function listAction()
     {
         $plannings = getAllPlanning();
-
-        TemplateEngine::render(__DIR__.'/../views/planning/list.php', ['role' => 'ADMIN', 'plannings' => $plannings]);
+        
+        parent::render(__DIR__.'/../views/planning/list.php', ['role' => 'ADMIN', 'plannings' => $plannings]);     
     }
 
     public function editAction()
@@ -39,8 +38,7 @@ class PlanningController
             if (!$error) {
                 updatePlanning($_GET["id"], $_POST["Date"], $_POST["Label"], $_POST["Teacher"]);
             }
-
-            include './views/editPlanningView.php';
+            parent::render('./views/editPlanningView.php',$planning);
         }
     }
 
@@ -62,7 +60,6 @@ class PlanningController
         } catch (Exception $e) {
             $messageInfo = "Exception " . $e->getMessage();
         }
-
-        include('./views/createPlanningView.php');
+        parent::render('./views/createPlanningView.php',$messageInfo);
     }
 }

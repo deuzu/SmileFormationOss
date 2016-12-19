@@ -4,10 +4,9 @@ namespace SmileOSS\Lab\OOP\Controller;
 
 require_once("./form/signUpForm.php");
 
-class SignUpController
+class SignUpController extends ParentController
 {
     public function renderSignUpForm(){
-
         If(isset($_POST['valider'])){
 
             if(isset($_POST['lastName'])){ $userLastName  =  $_POST['lastName'] ;}
@@ -27,10 +26,7 @@ class SignUpController
                 header('Location:?action=');
 
             }
-
-
         }
-
-        include("./views/signUpView.php");
+        parent::render('./views/signUpView.php');
     }
 }

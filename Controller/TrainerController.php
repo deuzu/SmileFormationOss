@@ -6,7 +6,7 @@ require_once 'repository/trainersRepository.php';
 require_once 'manager/trainerManager.php';
 require_once 'form/editTrainerForm.php';
 
-class TrainerController
+class TrainerController extends ParentController
 {
     public function listAction()
     {
@@ -14,7 +14,7 @@ class TrainerController
         $trainers = getAllTrainers();
 
         //display it
-        include 'views/listTrainersView.php';
+        parent::render('views/listTrainersView.php',$trainers);
     }
 
     public function editAction()
@@ -48,10 +48,8 @@ class TrainerController
                 //header("listeController.php");
             }
         }
-
         //call view
-        include 'views/editTrainerView.php';
-
+        parent::render('views/editTrainerView.php',$trainer);
     }
 
     public function deleteAction()
@@ -74,7 +72,6 @@ class TrainerController
 
     public function createAction()
     {
-
         $messageInfo = "";
 
         try {
@@ -90,8 +87,6 @@ class TrainerController
         } catch (Exception $e) {
             $messageInfo = "Exception " . $e->getMessage();
         }
-
-
-        include('./views/createTrainerView.php');
+        parent::render('./views/createTrainerView.php',$messageInfo);
     }
 }

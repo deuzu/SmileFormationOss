@@ -6,7 +6,7 @@ require_once './repository/usersRepository.php';
 require_once './manager/userManager.php';
 require_once './form/editUserForm.php';
 
-class UserController
+class UserController extends ParentController
 {
     public function listAction()
     {
@@ -14,7 +14,7 @@ class UserController
         $users = getAllUsers();
 
         //display it
-        include './views/listUsersView.php';
+        parent::render('./views/listUsersView.php',$users);       
     }
 
     public function editAction()
@@ -52,8 +52,7 @@ class UserController
         }
 
         //call view
-        include './views/editUserView.php';
-
+        parent::render('./views/editUserView.php',$user);     
     }
 
     public function deleteAction()
@@ -82,6 +81,6 @@ class UserController
         }
 
         //call view
-        include './views/deleteUserView.php';
+        parent::render('./views/deleteUserView.php',$user);
     }
 }
