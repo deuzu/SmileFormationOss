@@ -5,6 +5,9 @@ namespace SmileOSS\Lab\OOP\Controller;
 require_once './manager/sessionManager.php';
 require_once './form/loginForm.php';
 
+use SmileOSS\Lab\OOP\Templating\TemplateEngine;
+
+
 class LoginController
 {
     //si le formulaire est soumis, je verifie les erreurs > form ==> check_form()
@@ -21,16 +24,19 @@ class LoginController
                 $password = $_POST["password"];
 
                 createSession($login, $password);
-                header("Location:?controller=planning&action=list");
+                TemplateEngine::render(__DIR__.'/../views/planning/list.php', ['role' => 'ADMIN']);
+                //header("Location:?controller=planning&action=list");
             }
         }
 
-        include './views/loginView.php';
+        TemplateEngine::render(__DIR__.'/../views/loginView.php');
+        //include './views/loginView.php';
     }
 
     public function logoutAction()
     {
         destroySession();
-        header("Location:?controller=login&action=login");
+        TemplateEngine::render(__DIR__.'/../views/loginView.php');
+        //header("Location:?controller=login&action=login");
     }
 }
