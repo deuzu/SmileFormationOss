@@ -1,4 +1,4 @@
-<h2>Listes des utilisateurs</h2>
+<h2>Liste des utilisateurs</h2>
 <style>
     table, th, td {
         border: 1px solid black;

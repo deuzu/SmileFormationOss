@@ -1,6 +1,7 @@
 <?php
-
 namespace SmileOSS\Lab\OOP\Controller;
+
+use SmileOSS\Lab\OOP\Templating\TemplateEngine;
 
 require_once './repository/usersRepository.php';
 require_once './manager/userManager.php';
@@ -10,18 +11,18 @@ class UserController
 {
     public function listAction()
     {
+        die('gfdkjhdfkjsd');
         //retrieve the users data
         $users = getAllUsers();
 
-        //display it
-        include './views/listUsersView.php';
+        //call view
+        TemplateEngine::render(__DIR__.'/../views/user/list.php', ['users' => $users]);
     }
 
     public function editAction()
     {
         if(!isset($_GET['userid'])){
             echo "error on user id";
-            //TODO display error message
         }
 
         //Get user to edit
@@ -50,17 +51,14 @@ class UserController
                 //header("listeController.php");
             }
         }
-
         //call view
-        include './views/editUserView.php';
-
+        TemplateEngine::render(__DIR__.'/../views/user/edit.php', ['user' => $user]);
     }
 
     public function deleteAction()
     {
         if(!isset($_GET['userid'])){
             echo "error on user id";
-            //TODO display error message
         }
 
         //get user to delete
@@ -80,8 +78,7 @@ class UserController
 
             deleteUser($user);
         }
-
         //call view
-        include './views/deleteUserView.php';
+        TemplateEngine::render(__DIR__.'/../views/user/delete.php', ['user' => $user]);
     }
 }
