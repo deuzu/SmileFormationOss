@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SmileOSS\\Lab\\OOP\\": "."
+            "SmileOSS\\Lab\\OOP\\": "src/"
         }
     }
 }
