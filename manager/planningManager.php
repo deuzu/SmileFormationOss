@@ -13,8 +13,8 @@
         $result= $bdh -> query("DELETE FROM planning WHERE ID='.$id.'");
 
     }
-    
-    
+
+
     /**
     * Make an update of the formation ine the database
     * @param int $date
@@ -22,12 +22,12 @@
     * @param text $teacher
     */
     function updatePlanning($id, $date, $label, $teacher){
-    
+
     $bdh = new PDO('mysql:host=localhost; dbname=FormationOSS','root','root');
-    
-    $result= $bdh -> query("UPDATE planning SET Date='.$date.', label='.$label.', teach='.$teacher.' WHERE ID='.$id.'");    
+
+    $result= $bdh->query("UPDATE planning SET Date='.$date.', label='.$label.', teach='.$teacher.' WHERE ID='.$id.'");    
     }
-    
+
 
     /**
     * Créer un nouveau planning
@@ -53,5 +53,3 @@
 
         }
     }
-
-
