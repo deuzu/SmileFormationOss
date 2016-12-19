@@ -1,6 +1,6 @@
 <?php
-
-    require_once './repository/usersRepository.php';
+namespace SmileOSS\Lab\OOP\Form;
+use SmileOSS\Lab\OOP\repository\usersRepository;
 
     function validateUser($name,$login,$psw){
         
