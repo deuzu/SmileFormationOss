@@ -1,20 +1,22 @@
 <?php
-
 namespace SmileOSS\Lab\OOP\Controller;
 
-require_once 'repository/trainersRepository.php';
-require_once 'manager/trainerManager.php';
-require_once 'form/editTrainerForm.php';
+use SmileOSS\Lab\OOP\Templating\TemplateEngine;
+use SmileOSS\Lab\OOP\Repository\TrainersRepository;
+use SmileOSS\Lab\OOP\Manager\TrainerManager;
+use SmileOSS\Lab\OOP\Form\EditTrainerForm;
 
 class TrainerController
 {
     public function listAction()
     {
         //retrieve the trainers data
-        $trainers = getAllTrainers();
+        $trainers = new TrainersRepository();
+        $trainers->getAllTrainers();
 
         //display it
-        include 'views/listTrainersView.php';
+        TemplateEngine::render(__DIR__.'/../views/listTrainersView.php',['trainers' => $trainers]);
+
     }
 
     public function editAction()
@@ -91,7 +93,7 @@ class TrainerController
             $messageInfo = "Exception " . $e->getMessage();
         }
 
-
         include('./views/createTrainerView.php');
     }
 }
+

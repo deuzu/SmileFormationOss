@@ -1,5 +1,4 @@
 <?php
-
 namespace SmileOSS\Lab\OOP\Routing;
 
 use SmileOSS\Lab\OOP\Controller\MenuController;
@@ -30,7 +29,8 @@ class FrontController
     public function renderOld()
     {
         //Anonymous controller
-        if(!isUserLoggedIn()){
+        if (!isUserLoggedIn()) 
+        {
 
             if(isset($_GET['action']) && $_GET['action']=='signup'){
 
@@ -44,7 +44,8 @@ class FrontController
         }
 
         //Secured routes
-        if(isUserLoggedIn() && isset($_GET['action'])) {
+        if (isUserLoggedIn() && isset($_GET['action']))
+        {
 
             renderMenu();
 
@@ -56,9 +57,7 @@ class FrontController
                     renderCreateTrainer();
                     break;
                 case 'listPlanning':
-
                     renderPlanning();
-
                     break;
                 case 'editPlanning':
                     renderEditPlanning();
@@ -92,7 +91,7 @@ class FrontController
                     executeLogout();
                     break;
             }
-        }else{
+        } else {
             return "nothing to display";
         }
     }

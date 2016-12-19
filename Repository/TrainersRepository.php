@@ -1,22 +1,30 @@
 <?php
+namespace SmileOSS\Lab\OOP\Repository;
 
-require_once "services/sqlDriverService.php";
+use SmileOSS\Lab\OOP\Services\SqlDriver;
 
-function getAllTrainers() {
+class TrainersRepository
+{
+    
+    public function getAllTrainers()
+    {
+        
+        $dbh = new SqlDriver();
+        $dbh_con = $dbh->getDatabaseConnection();
 
-    $dbh = getDatabaseConnection();
+        $results = $dbh_con->query('SELECT * FROM trainers');
 
-    $results = $dbh->query('SELECT * FROM trainers');
+        return $results->fetchAll();
+    }
 
-    return $results->fetchAll();
+    public function getTrainerById($id)
+    {
+
+        $dbh = new SqlDriver();
+        $dbh_con = $dbh->getDatabaseConnection();
+
+        $results = $dbh_con->query('SELECT * FROM trainers WHERE ID='.intval($id));
+
+        return $results->fetch();
+    }
 }
-
-function getTrainerById($id) {
-
-    $dbh = getDatabaseConnection();
-
-    $results = $dbh->query('SELECT * FROM trainers WHERE ID='.intval($id));
-
-    return $results->fetch();
-}
-

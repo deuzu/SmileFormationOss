@@ -1,5 +1,11 @@
 <?php
+namespace SmileOSS\Lab\OOP\Form;
 
-function checkEditTrainerForm(){
-    return false;
+class EditTrainerForm
+{
+    public function checkEditTrainerForm()
+    {
+        return false;
+    }
 }
+
