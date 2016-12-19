@@ -13,7 +13,6 @@ use SmileOSS\Lab\OOP\Controller\MenuController;
 // include_once 'manager/sessionManager.php';
 // include_once 'controller/signUpController.php';
 
-
 class FrontController
 {
     public function render()
