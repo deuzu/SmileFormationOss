@@ -4,49 +4,50 @@ namespace SmileOSS\Lab\OOP\Controller;
 
 use SmileOSS\Lab\OOP\Templating\TemplateEngine;
 
-require_once './manager/planningManager.php';
-require_once './form/createPlanningForm.php';
-require_once './form/editPlanningForm.php';
-require_once './repository/planningRepository.php';
-
-class PlanningController
+class PlanningController extends AbstractController
 {
     public function listAction()
     {
-        $plannings = getAllPlanning();
+        $plannings = $this->container->get('planning_repository')->findAll();
 
-        TemplateEngine::render(__DIR__.'/../views/planning/list.php', ['role' => 'ADMIN', 'plannings' => $plannings]);
+        $this->render('planning/list.php', ['role' => 'ADMIN', 'plannings' => $plannings]);
     }
 
     public function editAction()
     {
         if (!isset($_GET['id'])) {
             echo "error on planning id";
+
+            return;
         }
 
-        $planning = getPlaningById($_GET['ID']);
+        $repository = $this->container->get('planning_repository');
+        $planning = $repository->find($_GET['id']);
+
+        // check if planning found. If not throw exception
 
         if (isset($_POST['edit'])) {
-            $planning = array(
+            $planning = [
                 'ID' => $_GET['id'],
                 'Date' => $_POST['Date'],
                 'Label' => $_POST['Label'],
                 'Teacher' => $_POST['Teacher']
-            );
+            ]
 
             $error = checkEditPlanningForm($planning);
 
             if (!$error) {
-                updatePlanning($_GET["id"], $_POST["Date"], $_POST["Label"], $_POST["Teacher"]);
+                $manager = $this->container->get('planning_manager');
+                $manager->update($_GET['id'], $_POST['date'], $_POST['label'], $_POST['teacher']);
             }
 
-            include './views/editPlanningView.php';
+            $this->render('planning/edit.php');
         }
     }
 
     public function createAction()
     {
-        $messageInfo = "";
+        $messageInfo = '';
 
         try {
             if (isset($_POST['createPlanning'])) {

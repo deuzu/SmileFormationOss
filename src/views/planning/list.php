@@ -5,7 +5,7 @@
         <title>Consultation du planning de formation</title>
     </head>
     <body>
-        <?php self::render(__DIR__.'/../menuView.php'); ?>
+        <?php self::render('menu.php'); ?>
         <table>
             <caption><b>Planning de formation</b></caption>
             <tr>

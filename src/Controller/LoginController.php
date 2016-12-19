@@ -7,10 +7,6 @@ require_once './form/loginForm.php';
 
 class LoginController
 {
-    //si le formulaire est soumis, je verifie les erreurs > form ==> check_form()
-    //affiche le formulaire avec les erreurs si il y en a > view ==> display_errors()
-    //si pas d'erreur > appel manager session , puis redirection vers leplanning
-
     public function loginAction()
     {
         if (isset($_POST['submit'])) {

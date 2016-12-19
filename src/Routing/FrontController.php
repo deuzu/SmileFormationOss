@@ -4,16 +4,6 @@ namespace SmileOSS\Lab\OOP\Routing;
 
 use SmileOSS\Lab\OOP\Controller\MenuController;
 
-// include_once 'controller/menuController.php';
-// include_once 'controller/loginController.php';
-// include_once 'controller/userController.php';
-// include_once 'controller/trainerController.php';
-// include_once 'controller/planningController.php';
-// include_once 'controller/showPlanningController.php';
-// include_once 'manager/sessionManager.php';
-// include_once 'controller/signUpController.php';
-
-
 class FrontController
 {
     public function render()
