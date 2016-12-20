@@ -25,7 +25,7 @@
                 <td>
                      <?php if ($role == "ADMIN") { ?>
                         <a href="?controller=planning&action=edit&id=<?php echo $planning['ID']; ?>">Update</a>
-                        <a href="?controller=planning&action=delete&id=<?php  echo $planning['ID'] ?>">Delete</a>
+                        <a href="?controller=planning&action=delete&id=<?php echo $planning['ID'] ?>">Delete</a>
                      <?php } ?>
                 </td>
             </tr>

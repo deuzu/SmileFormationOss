@@ -12,13 +12,11 @@ class PlanningForm
                throw new \Exception("Champ vide!");
            }
 
-
            if(!is_numeric($planning["date"])){
                 throw new \Exception("La date doit être au format numerique!");
             }
 
             return true;
-
        }
 
        else{

@@ -36,7 +36,11 @@ class PlanningController extends AbstractController
             $form->validate($planning);
 
             $manager = $this->container->get('planning_manager');
-            $manager->update($_GET['id'], $_POST['date'], $_POST['label'], $_POST['teach']);
+            $update = $manager->update($_GET['id'], $_POST['date'], $_POST['label'], $_POST['teach']);
+
+            if ($update) {
+                header('location:index.php?controller=planning&action=list');
+            }
         }
 
         $this->render('planning/edit.php', ['planning' => $planning]);
@@ -44,8 +48,6 @@ class PlanningController extends AbstractController
 
     public function createAction()
     {
-        $messageInfo = '';
-
         try {
             if (isset($_POST['createPlanning'])) {
                 if (validateCreateForm()) {
