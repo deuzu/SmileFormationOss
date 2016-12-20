@@ -2,10 +2,8 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-require_once './manager/sessionManager.php';
-require_once './form/loginForm.php';
 
-class LoginController
+class LoginController extends AbstractController
 {
     public function loginAction()
     {
