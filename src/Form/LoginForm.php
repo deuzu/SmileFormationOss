@@ -12,9 +12,9 @@ class LoginForm
             $error = "il faut remplir les champs";
         }
 
-        if (!userIsOK($user["login"], $user["password"])) {
+       /* if (!userIsOK($user["login"], $user["password"])) {
             $error = "les identifiants ne sont pas corrects";
-        }
+        }*/
 
         return $error;
     }

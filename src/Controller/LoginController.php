@@ -3,6 +3,7 @@
 namespace SmileOSS\Lab\OOP\Controller;
 
 use SmileOSS\Lab\OOP\Form\LoginForm;
+use SmileOSS\Lab\OOP\Manager\SessionManager;
 
 class LoginController extends AbstractController
 {
@@ -10,14 +11,12 @@ class LoginController extends AbstractController
     {
         if (isset($_POST['submit'])) {
             $user = array("login" => $_POST["login"], "password" => $_POST["password"]);
-
             $error = LoginForm::validate($user);
 
             if (!$error) {
                 $login = $_POST["login"];
                 $password = $_POST["password"];
-
-                createSession($login, $password);
+                SessionManager::createSession($user);
                 header("Location:?controller=planning&action=list");
             }
         }
@@ -26,7 +25,7 @@ class LoginController extends AbstractController
 
     public function logoutAction()
     {
-        destroySession();
+        SessionManager::destroySession();
         header("Location:?controller=login&action=login");
     }
 }
