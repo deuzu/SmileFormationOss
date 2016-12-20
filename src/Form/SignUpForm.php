@@ -1,33 +1,36 @@
 <?php
 namespace SmileOSS\Lab\OOP\Form;
+
 use SmileOSS\Lab\OOP\Repository\usersRepository;
 use SmileOSS\Lab\OOP\Form\SignUpForm;
 
 class SignUpForm
 {
-    public function validateUser($name, $login, $psw)
+    public static function validate(array $user)
     {
-        $userName  =  strip_tags($name) ;
-        $userLogin = preg_match('/^[a-zA-Z0-9_-]/',$login);
-        $userPsw   =  strip_tags($psw) ;
-        $error=false;
-        try{    
-            //Vérifier Si les entrées ne sont pas vides et bien renseignées
-            if ((isset($name) && $name == "") 
-                || (isset($login)&& $login == "")
-                || (isset($psw) && $psw == "")){
-                throw new Exception('les champs du formulaire ne doivent pas etre vide');
-            }
-            //Vérifier si le login est correct   
-            if (!$userLogin){
-                throw new Exception('Le login n\'est pas correct');
-            }
-            if (userIsOK($userLogin, $userPsw)) {
-                throw new Exception('Ces identifiants existent déja');
-            }
-        } catch (Exception $e){
-            $error = $e->getMessage();
-        } 
+        $userName  = strip_tags($user['lastName']);
+        $userPsw   = strip_tags($user['password']);
+        $userLogin = preg_match('/^[a-zA-Z0-9_-]/', $user['login']);
+        
+        $error = [];
+        
+        //Vérifier Si les entrées ne sont pas vides et bien renseignées
+        if ((isset($user['lastName']) && $user['lastName'] == "")
+            || (isset($user['login']) && $user['login'] == "")
+            || (isset($user['password']) && $user['password']== "")){
+            
+            $error[] = 'les champs du formulaire ne doivent pas etre vide';
+        }
+        
+        //Vérifier si le login est correct   
+        if (!$userLogin){
+            $error[] = 'Le login n\'est pas correct';
+        }
+        
+        if (userIsOK($userLogin, $userPsw)){
+            $error[] = 'Ces identifiants existent déja';
+        }
+        
         return $error;
     }
 }
