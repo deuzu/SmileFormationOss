@@ -23,38 +23,18 @@ class UserRepository
      * 
      * @param string $login
      * @param string $password
-     * 
+     *  
      * @return array
      */
     public function userIsOk($login, $password)
     {
-        $sth = $this->databaseManager->prepare('SELECT login, password FROM users WHERE login="' . $this->login . '" and password="' . $this->password . '"');
+        $statement = $this->databaseManager->prepare('SELECT login, password FROM users WHERE login=:login and password=:password');
+        $statement->bindParam(':login', $login);
+        $statement->bindParam(':password', $password);
+        $statement->execute();
+        $result = $statement->fetchAll();
 
-        return $sth->execute();
-    }
-
-    /**
-     * 
-     * @return array
-     */
-    public function getAllUsers()
-    {
-        $sth = $this->databaseManager->prepare('SELECT * FROM users');
-
-        return $sth->execute();
-    }
-
-    /**
-     * 
-     * @param int $id
-     * 
-     * @return array
-     */
-    public function getUserById($id)
-    {
-        $sth = $this->databaseManager->prepare('SELECT * FROM users WHERE ID=' . intval($this->id));
-
-        return $sth->execute();
+        return count($result) > 0;
     }
 
     /**
@@ -64,8 +44,12 @@ class UserRepository
      */
     public function getRoleByLogin($login)
     {
+        $statement = $this->databaseManager->prepare('SELECT role FROM users where login = :login');
+        $statement->bindParam(':login', $login);
+        $statement->execute();
+        $data = $statement->fetch();
 
-        $sth = $this->databaseManager->query("SELECT role FROM users where login = '$this->login'");
+        return $data['role'];
     }
 
     /**
@@ -74,5 +58,20 @@ class UserRepository
     public function findAll()
     {
         return $this->databaseManager->query("SELECT * FROM planning")->fetchAll();
+    }
+
+    /**
+     * 
+     * @param int $id
+     * 
+     * @return array
+     */
+    public function find($id)
+    {
+        $statement = $this->databaseManager->prepare("SELECT * FROM users WHERE ID=:id");
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+
+        return $statement->fetch();
     }
 }
