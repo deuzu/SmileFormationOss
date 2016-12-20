@@ -2,19 +2,23 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
+use SmileOSS\Lab\OOP\Database\DatabaseManager;
 use SmileOSS\Lab\OOP\Repository\TrainersRepository;
 use SmileOSS\Lab\OOP\Manager\TrainerManager;
 use SmileOSS\Lab\OOP\Form\EditTrainerForm;
 
-class TrainerController
+class TrainerController extends AbstractController
 {
     public function listAction()
     {
-        //retrieve the trainers data
-        $trainers = getAllTrainers();
+        $bdh = new DatabaseManager();
+        $trainers = new TrainersRepository($bdh);
+        
+        $trainers->findAll();
+        
+        $this->render('trainers/list.php', ['trainers' => $trainers]);
+        
 
-        //display it
-        include 'views/listTrainersView.php';
     }
 
     public function editAction()

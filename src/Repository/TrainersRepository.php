@@ -9,10 +9,10 @@ class TrainersRepository
      * @var DatabaseManager
      */
     private $databaseManager;
+    
     /**
      * @param DatabaseManager $databaseManager
      */
-    
     public function __construct(DatabaseManager $databaseManager)
     {
         $this->databaseManager = $databaseManager->getConnection();
@@ -21,7 +21,7 @@ class TrainersRepository
     /**
      * @return array
      */
-    public function getAllTrainers()
+    public function findAll()
     {
         return $this->databaseManager->query("SELECT * FROM trainers")->fetchAll();
     }
@@ -31,7 +31,7 @@ class TrainersRepository
      *
      * @return array
      */
-    public function getTrainerById($id)
+    public function find($id)
     {
         return $this->databaseManager->prepare("SELECT * FROM trainers WHERE date='.$id.'");
     }
