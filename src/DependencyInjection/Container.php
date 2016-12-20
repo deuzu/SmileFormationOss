@@ -17,7 +17,6 @@ class Container
     public function __construct()
     {
         $this->initializeServices();
-        // var_dump($this->services);die();
     }
 
     /**

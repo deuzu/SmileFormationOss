@@ -1,55 +1,52 @@
 <?php
 
-require_once "services/sqlDriverService.php";
+namespace SmileOSS\Lab\OOP\Manager; 
 
-function updateTrainer($trainer) {
+class TrainerManager
+{
+    /**
+     * @var DatabaseManager
+     */
+    private $databaseManager;
 
-    var_dump($trainer);
+    /**
+     * @param DatabaseManager $databaseManager
+     */
+    public function __construct(DatabaseManager $databaseManager)
+    {
+        $this->databaseManager = $databaseManager->getConnection();
+    }
+    
+    /**
+     * @param array $trainer
+     */
+    public function update(array $trainer)
+    {
+        list($id, $firstName, $lastName, $email, $phone) = $trainer;
+        
+        $this->databaseManager->query("UPDATE planning SET firstName='.$firstName.', lastName='.$lastName.', email='.$email.', phone='.$phone.' WHERE ID='.$id.'");
+    }
 
-    $dbh = getDatabaseConnection();
+    /**
+     * @param type $trainerId
+     */
+    public function delete($trainerId)
+    {
+        $sql = "DELETE FROM trainers WHERE ID = $trainerId";
 
-    $sql = "UPDATE trainers 
-            SET 
-                firstName = :firstName, 
-                lastName = :lastName,  
-                email = :email,  
-                phone = :phone
-                
-            WHERE ID = :id ";
+        $stmt = $this->databaseManager->prepare($sql);
 
-    $stmt = $dbh->prepare($sql);
+        return $stmt->execute();
+    }
 
-    $stmt->bindValue(':firstName', $trainer['firstName'],PDO::PARAM_STR);
-    $stmt->bindValue(':lastName', $trainer['lastName'],PDO::PARAM_STR);
-    $stmt->bindValue(':email', $trainer['email'],PDO::PARAM_STR);
-    $stmt->bindValue(':phone', $trainer['phone'],PDO::PARAM_STR);
-    $stmt->bindParam(':id', $trainer['ID']);
+    /**
+     * @param array $trainer
+     */
+    public function create(array $trainer) 
+    {
+        list($id, $firstName, $lastName, $email, $phone) = $trainer;
 
-    return $stmt->execute();
-}
-
-function deleteTrainer($trainerId){
-
-    $dbh = getDatabaseConnection();
-
-    $sql = "DELETE FROM trainers
-            WHERE ID = $trainerId";
-
-    $stmt = $dbh->prepare($sql);
-
-    return $stmt->execute();
-
-}
-
-/**
-* Créer un nouveau formateur
-*/
-function createTrainer($firstName, $lastName, $email, $phone) {
-
-    try {
-        $dbh = getDatabaseConnection();
-
-        $stmt = $dbh->prepare(" INSERT INTO trainers (firstName, lastName, email, phone) VALUES (:firstName, :lastName, :email, :phone)");
+        $stmt = $this->databaseManager->prepare(" INSERT INTO trainers (firstName, lastName, email, phone) VALUES (:firstName, :lastName, :email, :phone)");
         $stmt->bindParam(':firstName', $firstName);
         $stmt->bindParam(':lastName', $lastName);
         $stmt->bindParam(':email', $email);
@@ -57,9 +54,5 @@ function createTrainer($firstName, $lastName, $email, $phone) {
 
         $stmt->execute();
     }
-
-    catch(Exception $e) {
-        throw  new Exception("Error create in base ");
-
-    }
 }
+
