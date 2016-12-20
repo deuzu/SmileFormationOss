@@ -6,7 +6,7 @@ require_once './repository/usersRepository.php';
 require_once './manager/userManager.php';
 require_once './form/editUserForm.php';
 
-class UserController
+class UserController extends AbstractController
 {
     public function listAction()
     {
@@ -14,6 +14,7 @@ class UserController
         $users = getAllUsers();
 
         //display it
+        $this->render('users/list.php', ['users' => $users]);
         include './views/list.php';
     }
 
