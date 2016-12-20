@@ -5,7 +5,7 @@ namespace SmileOSS\Lab\OOP\Validator;
 use SmileOSS\Lab\OOP\Controller\AbstractController;
 use SmileOSS\Lab\OOP\Repository\UserRepository;
 
-class LoginValidator extends AbstractController
+class LoginValidator
 {
     /**
      * @var UserRepository

@@ -41,8 +41,8 @@ class Container
         $this->services['planning_repository'] = new PlanningRepository($this->services['database_manager']);
         $this->services['planning_manager'] = new PlanningManager($this->services['database_manager']);
         $this->services['trainers_repository'] = new TrainersRepository($this->services['database_manager']);
-        $this->services['users_repository'] = new UserRepository($this->services['database_manager']);
-        $this->services['login_validator'] = new LoginValidator($this->services['users_repository']);
+        $this->services['user_repository'] = new UserRepository($this->services['database_manager']);
+        $this->services['login_validator'] = new LoginValidator($this->services['user_repository']);
 
     }
 }
