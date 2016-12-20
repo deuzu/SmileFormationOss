@@ -3,7 +3,7 @@ namespace SmileOSS\Lab\OOP\Repository;
 
 use SmileOSS\Lab\OOP\Database\DatabaseManager;
 
-class TrainersRepository
+class TrainerRepository
 {
     /**
      * @var DatabaseManager
@@ -33,6 +33,6 @@ class TrainersRepository
      */
     public function find($id)
     {
-        return $this->databaseManager->prepare("SELECT * FROM trainers WHERE date='.$id.'");
+        return $this->databaseManager->query("SELECT * FROM trainers WHERE ID=$id")->fetchAll();
     }
 }

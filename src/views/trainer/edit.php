@@ -1,9 +1,8 @@
 <h2>Edit a trainer</h2>
 <form action="#" method="post">
     <label for="ID">ID</label>
-    <input type="text" name="ID" readonly="readonly"
+    <input type="text" name="ID"
            value="<?php echo isset($trainer['ID'])?$trainer['ID']:''; ?>"></br>
-
     <label for="firstName">First Name</label>
     <input type="text" name="firstName"
            value="<?php echo isset($trainer['firstName'])?$trainer['firstName']:''; ?>"></br>

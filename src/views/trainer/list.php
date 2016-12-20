@@ -21,7 +21,7 @@
         <td><?php echo $trainer['email']; ?></td>
         <td><?php echo $trainer['phone']; ?></td>
         <td>
-            <a href="?action=editTrainer&trainerid=<?php echo $trainer['ID']; ?>">Modifier</a>
+            <a href="?controller=trainer&action=edit&trainerid=<?php echo $trainer['ID']; ?>">Modifier</a>
             <a href="?action=deleteTrainer&trainerid=<?php echo $trainer['ID']; ?>">Supprimer</a>
         </td>
     </tr>

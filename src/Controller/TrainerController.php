@@ -2,8 +2,7 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-use SmileOSS\Lab\OOP\Database\DatabaseManager;
-use SmileOSS\Lab\OOP\Repository\TrainersRepository;
+use SmileOSS\Lab\OOP\Repository\TrainerRepository;
 use SmileOSS\Lab\OOP\Manager\TrainerManager;
 use SmileOSS\Lab\OOP\Form\EditTrainerForm;
 
@@ -11,9 +10,9 @@ class TrainerController extends AbstractController
 {
     public function listAction()
     {
-        $trainersList = $this->container->get('trainers_repository')->findAll();
+        $trainersList = $this->container->get('trainer_repository')->findAll();
         
-        $this->render('trainers/list.php', ['trainers' => $trainersList]);
+        $this->render('trainer/list.php', ['trainers' => $trainersList]);
     }
 
     public function editAction()
@@ -23,33 +22,30 @@ class TrainerController extends AbstractController
             //TODO display error message
         }
 
+        $id = $_GET['trainerid'];
+        
         //Get trainer to edit
-        $trainer = find($_GET['trainerid']);
-
+        $trainerInfo = $this->container->get('trainer_repository')->find($id);
+        
         //check the trainer data if submitted
         if (isset($_POST['edit'])) {
 
             $trainer = array(
-                'ID' => $trainer['ID'],
+                'ID' => $id,
                 'firstName' => $_POST['firstName'],
                 'lastName' => $_POST['lastName'],
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone']
             );
 
-            $errors = checkEditTrainerForm($trainer);
+            //update the trainer data
+            $trainer_res = $this->container->get('trainer_manager');
+            $trainer_res->update($_POST['ID'], $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['phone']);
 
-            if(!$errors){
-                //update the trainer data
-                update($trainer);
-
-                //redirect to the planning
-                //header("listeController.php");
-            }
+            var_dump($trainer);
         }
 
-        //call view
-        include 'views/editTrainerView.php';
+        $this->render('trainer/edit.php', ['trainer' => $trainerInfo]);
 
     }
 

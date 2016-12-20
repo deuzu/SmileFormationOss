@@ -1,6 +1,8 @@
 <?php
 
-namespace SmileOSS\Lab\OOP\Manager; 
+namespace SmileOSS\Lab\OOP\Manager;
+
+use SmileOSS\Lab\OOP\Database\DatabaseManager;
 
 class TrainerManager
 {
@@ -20,11 +22,11 @@ class TrainerManager
     /**
      * @param array $trainer
      */
-    public function update(array $trainer)
+    public function update($id, $firstName, $lastName, $email, $phone)
     {
-        list($id, $firstName, $lastName, $email, $phone) = $trainer;
+        //list($id, $firstName, $lastName, $email, $phone) = $trainer;
         
-        $this->databaseManager->query("UPDATE planning SET firstName='.$firstName.', lastName='.$lastName.', email='.$email.', phone='.$phone.' WHERE ID='.$id.'");
+        $this->databaseManager->query("UPDATE trainers SET firstName='$firstName', lastName='$lastName', email='$email', phone='$phone' WHERE ID=$id ");
     }
 
     /**
