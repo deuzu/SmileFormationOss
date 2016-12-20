@@ -32,7 +32,7 @@ class PlanningController extends AbstractController
                 'Date' => $_POST['Date'],
                 'Label' => $_POST['Label'],
                 'Teacher' => $_POST['Teacher']
-            ]
+            ];
 
             $error = checkEditPlanningForm($planning);
 
