@@ -1,30 +1,25 @@
 <?php
+                                        //require_once '/repository/userIsOK.php';
+namespace SmileOSS\Lab\OOP\Manager;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+class SessionManager
+{
+    public function createSession($user)
+    {
+        session_start();
+        $_SESSION["connected"] = true;
+        $_SESSION["login"] = $user["login"];
+        $_SESSION["password"] = $user["password"];
 
-//require_once '/repository/userIsOK.php';
+        return true;
+    }
 
-function createSession($login, $password) {
-     session_start();
-    $_SESSION["connected"] = true;
-    $_SESSION["login"] = $login;
-    $_SESSION["password"] = $password;   
+    public function destroySession()
+    {
+        // empty data
+        $_SESSION = array();
+        session_destroy();
 
-    return true;
+        return true;
+    }
 }
-
-function destroySession() {
-    // empty data
-    $_SESSION = array();
-
-    // destroy session
-    session_destroy();
-
-    return true;
-}
-
-
