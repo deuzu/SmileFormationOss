@@ -24,8 +24,8 @@
                 <td><?php echo $planning['teach'] ?></td>
                 <td>
                      <?php if ($role == "ADMIN") { ?>
-                        <a href="../views/editPlanningView.php?id=<?php  echo $planning['ID'] ?>">Delete</a>
-                        <a href="../views/editPlanningView.php?id=<?php  echo $planning['ID'] ?>">Update</a>
+                        <a href="../views/editPlanningView.php?id=<?php echo $planning['ID'] ?>">Delete</a>
+                        <a href="../views/editPlanningView.php?id=<?php echo $planning['ID'] ?>">Update</a>
                      <?php } ?>
                 </td>
             </tr>
