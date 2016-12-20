@@ -14,7 +14,7 @@ class UserController
         $users = getAllUsers();
 
         //display it
-        include './views/listUsersView.php';
+        include './views/list.php';
     }
 
     public function editAction()
@@ -52,7 +52,7 @@ class UserController
         }
 
         //call view
-        include './views/editUserView.php';
+        include './views/edit.php';
 
     }
 
@@ -82,6 +82,6 @@ class UserController
         }
 
         //call view
-        include './views/deleteUserView.php';
+        include './views/delete.php';
     }
 }
