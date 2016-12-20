@@ -2,6 +2,10 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
+use SmileOSS\Lab\OOP\Repository;
+
+
+
 require_once './repository/usersRepository.php';
 require_once './manager/userManager.php';
 require_once './form/editUserForm.php';
