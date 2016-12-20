@@ -15,7 +15,6 @@ class UserController extends AbstractController
 
         //display it
         $this->render('users/list.php', ['users' => $users]);
-        include './views/list.php';
     }
 
     public function editAction()
