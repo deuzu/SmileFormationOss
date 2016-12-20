@@ -2,8 +2,6 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-use SmileOSS\Lab\OOP\Templating\TemplateEngine;
-
 class PlanningController extends AbstractController
 {
     public function listAction()
