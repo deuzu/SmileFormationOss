@@ -40,12 +40,14 @@ class PlanningController extends AbstractController
         }
 
         $this->render('planning/edit.php', ['planning' => $planning]);
+
+        if (isset($manager)) {
+            header('location:index.php?controller=planning&action=list');
+        }
     }
 
     public function createAction()
     {
-        $messageInfo = '';
-
         try {
             if (isset($_POST['createPlanning'])) {
                 if (validateCreateForm()) {
