@@ -2,9 +2,9 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-require_once 'repository/trainersRepository.php';
-require_once 'manager/trainerManager.php';
-require_once 'form/editTrainerForm.php';
+use SmileOSS\Lab\OOP\Repository\TrainersRepository;
+use SmileOSS\Lab\OOP\Manager\TrainerManager;
+use SmileOSS\Lab\OOP\Form\EditTrainerForm;
 
 class TrainerController
 {
