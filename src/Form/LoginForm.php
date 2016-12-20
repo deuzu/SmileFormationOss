@@ -1,11 +1,12 @@
 <?php
 
-require_once './repository/usersRepository.php';
+//require_once './repository/usersRepository.php';
+namespace SmileOSS\Lab\OOP\FORM;
 
 
 class LoginForm
 {
-    function check_form($login, $password)
+    public static function check_form($login, $password)
     {
         $error = FALSE;
 
