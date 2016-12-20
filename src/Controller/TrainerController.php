@@ -11,12 +11,9 @@ class TrainerController extends AbstractController
 {
     public function listAction()
     {
-        $bdh = new DatabaseManager();
-        $trainers = new TrainersRepository($bdh);
+        $trainersList = $this->container->get('trainers_repository')->findAll();
         
-        $trainers->findAll();
-        
-        $this->render('trainers/list.php', ['trainers' => $trainers]);
+        $this->render('trainers/list.php', ['trainers' => $trainersList]);
         
 
     }
