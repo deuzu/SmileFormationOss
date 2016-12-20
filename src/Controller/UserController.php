@@ -10,7 +10,7 @@ class UserController extends AbstractController
     public function listAction()
     {
         //retrieve the users data
-        $users = $this->container->get('UsersRepository')->getAllUsers();
+        $users = $this->container->get('UsersRepository')->findAll();
 
         //display it
         $this->render('users/list.php', ['users' => $users]);
@@ -24,7 +24,7 @@ class UserController extends AbstractController
         }
 
         //Get user to edit
-        $user = $this->container->get('UsersRepository')->getUserById();
+        $user = $this->container->get('UsersRepository')->find();
 
         //check the planning data if submitted
         if(isset($_POST['edit'])) {
