@@ -4,6 +4,7 @@ namespace SmileOSS\Lab\OOP\Controller;
 
 use SmileOSS\Lab\OOP\Form\LoginForm;
 use SmileOSS\Lab\OOP\Manager\SessionManager;
+use SmileOSS\Lab\OOP\Security\Authentification;
 
 class LoginController extends AbstractController
 {
@@ -16,8 +17,12 @@ class LoginController extends AbstractController
             if (!$error) {
                 $login = $_POST['login'];
                 $password = $_POST['password'];
-                SessionManager::createSession($user);
-                header("Location:?controller=planning&action=list");
+                $authentification=new Authentification();
+                $connected=$authentification->isUserLoggedIn();
+                if(!$connected){
+                    SessionManager::createSession($user);
+                    header("Location:?controller=planning&action=list");
+                }
             }
         }
         $this->render('security/login.php');
