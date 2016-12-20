@@ -5,6 +5,7 @@ namespace SmileOSS\Lab\OOP\DependencyInjection;
 use SmileOSS\Lab\OOP\Database\DatabaseManager;
 use SmileOSS\Lab\OOP\Manager\PlanningManager;
 use SmileOSS\Lab\OOP\Repository\PlanningRepository;
+use SmileOSS\Lab\OOP\Repository\TrainersRepository;
 
 class Container
 {
@@ -38,5 +39,6 @@ class Container
         $this->services['database_manager'] = new DatabaseManager();
         $this->services['planning_repository'] = new PlanningRepository($this->services['database_manager']);
         $this->services['planning_manager'] = new PlanningManager($this->services['database_manager']);
+        $this->services['trainers_repository'] = new TrainersRepository($this->services['database_manager']);
     }
 }
