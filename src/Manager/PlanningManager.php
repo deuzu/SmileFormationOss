@@ -31,7 +31,7 @@ class PlanningManager
         $statement->bindParam(2, $label);
         $statement->bindParam(3, $teacher);
 
-        $statement->execute();
+        return $statement->execute();
     }
 
     /**
@@ -39,7 +39,7 @@ class PlanningManager
      */
     public function delete($id)
     {
-        $databaseManager->query("DELETE FROM planning WHERE ID='.$id.'");
+        $this->databaseManager->query("DELETE FROM planning WHERE ID='.$id.'");
     }
 
     /**
@@ -50,6 +50,13 @@ class PlanningManager
     */
     function update($id, $date, $label, $teacher)
     {
-        $this->databaseManager->query("UPDATE planning SET Date='.$date.', label='.$label.', teach='.$teacher.' WHERE ID='.$id.'");
+        $statement = $this->databaseManager->prepare("UPDATE planning SET date = ?, label = ?, teach = ? WHERE ID=?");
+
+        $statement->bindParam(1, $date);
+        $statement->bindParam(2, $label);
+        $statement->bindParam(3, $teacher);
+        $statement->bindParam(4, $id);
+
+        return $statement->execute();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
+use SmileOSS\Lab\OOP\Form\PlanningForm;
 use SmileOSS\Lab\OOP\Templating\TemplateEngine;
 
 class PlanningController extends AbstractController
@@ -24,25 +25,22 @@ class PlanningController extends AbstractController
         $repository = $this->container->get('planning_repository');
         $planning = $repository->find($_GET['id']);
 
-        // check if planning found. If not throw exception
-
         if (isset($_POST['edit'])) {
             $planning = [
                 'ID' => $_GET['id'],
-                'Date' => $_POST['Date'],
-                'Label' => $_POST['Label'],
-                'Teacher' => $_POST['Teacher']
+                'date' => $_POST['date'],
+                'label' => $_POST['label'],
+                'teach' => $_POST['teach']
             ];
 
-            $error = checkEditPlanningForm($planning);
+            $form = new PlanningForm();
+            $form->validate($planning);
 
-            if (!$error) {
-                $manager = $this->container->get('planning_manager');
-                $manager->update($_GET['id'], $_POST['date'], $_POST['label'], $_POST['teacher']);
-            }
-
-            $this->render('planning/edit.php');
+            $manager = $this->container->get('planning_manager');
+            $manager->update($_GET['id'], $_POST['date'], $_POST['label'], $_POST['teach']);
         }
+
+        $this->render('planning/edit.php', ['planning' => $planning]);
     }
 
     public function createAction()
@@ -64,6 +62,6 @@ class PlanningController extends AbstractController
             $messageInfo = "Exception " . $e->getMessage();
         }
 
-        include('./views/createPlanningView.php');
+        include('planning/create.php');
     }
 }
