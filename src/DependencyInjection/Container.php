@@ -38,5 +38,7 @@ class Container
         $this->services['database_manager'] = new DatabaseManager();
         $this->services['planning_repository'] = new PlanningRepository($this->services['database_manager']);
         $this->services['planning_manager'] = new PlanningManager($this->services['database_manager']);
+        $this->services['user_repository'] = new UserRepository();
+        $this->services['user_manager'] = new UserManager();
     }
 }
