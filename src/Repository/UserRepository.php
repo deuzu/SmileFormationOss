@@ -1,4 +1,5 @@
 <?php
+
 namespace SmileOSS\Lab\OOP\Repository;
 
 use SmileOSS\Lab\OOP\Database\DatabaseManager;
@@ -23,13 +24,14 @@ class UserRepository
      * @param string $login
      * @param string $password
      *  
-     * @return array
+     * @return bool
      */
     public function userIsOk($login, $password)
     {
+        $cryptedPassword = sha1($password);
         $statement = $this->databaseManager->prepare('SELECT login, password FROM users WHERE login=:login and password=:password');
         $statement->bindParam(':login', $login);
-        $statement->bindParam(':password', $password);
+        $statement->bindParam(':password', $cryptedPassword);
         $statement->execute();
         $result = $statement->fetchAll();
 
