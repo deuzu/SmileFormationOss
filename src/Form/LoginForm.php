@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileOSS\Lab\OOP\FORM;
+namespace SmileOSS\Lab\OOP\Form;
 
 class LoginForm
 {
