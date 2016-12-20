@@ -2,7 +2,7 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-require_once './repository/usersRepository.php';
+use SmileOSS\Lab\OOP\Repository;
 require_once './manager/userManager.php';
 require_once './form/editUserForm.php';
 
@@ -11,7 +11,7 @@ class UserController extends AbstractController
     public function listAction()
     {
         //retrieve the users data
-        $users = getAllUsers();
+        $users = $this->container->get('UsersRepository')->getAllUsers();
 
         //display it
         $this->render('users/list.php', ['users' => $users]);
@@ -21,7 +21,6 @@ class UserController extends AbstractController
     {
         if(!isset($_GET['userid'])){
             echo "error on user id";
-            //TODO display error message
         }
 
         //Get user to edit
@@ -40,7 +39,7 @@ class UserController extends AbstractController
                 'phone' => $_POST['phone']
             );
 
-            $errors = checkEditUserForm($user);
+            $errors = checkEditUserForm();
 
             if(!$errors){
                 //update the planning data
@@ -52,7 +51,7 @@ class UserController extends AbstractController
         }
 
         //call view
-        include './views/edit.php';
+        $this->render('users/list.php', ['users' => $users]);
 
     }
 
