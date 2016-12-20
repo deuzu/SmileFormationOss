@@ -2,12 +2,15 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
+use SmileOSS\Lab\OOP\Form\LoginForm;
+
+
 class LoginController extends AbstractController
 {
     public function loginAction()
     {
         if (isset($_POST['submit'])) {
-            $error = check_form($_POST["login"], $_POST["password"]);
+            $error = LoginForm::check_form($_POST["login"], $_POST["password"]);
 
             if (!$error) {
                 $login = $_POST["login"];
