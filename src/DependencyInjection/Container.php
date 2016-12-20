@@ -6,6 +6,8 @@ use SmileOSS\Lab\OOP\Database\DatabaseManager;
 use SmileOSS\Lab\OOP\Manager\PlanningManager;
 use SmileOSS\Lab\OOP\Repository\PlanningRepository;
 use SmileOSS\Lab\OOP\Repository\TrainersRepository;
+use SmileOSS\Lab\OOP\Repository\UserRepository;
+use SmileOSS\Lab\OOP\Validator\LoginValidator;
 
 class Container
 {
@@ -39,5 +41,8 @@ class Container
         $this->services['planning_repository'] = new PlanningRepository($this->services['database_manager']);
         $this->services['planning_manager'] = new PlanningManager($this->services['database_manager']);
         $this->services['trainers_repository'] = new TrainersRepository($this->services['database_manager']);
+        $this->services['user_repository'] = new UserRepository($this->services['database_manager']);
+        $this->services['login_validator'] = new LoginValidator($this->services['user_repository']);
+
     }
 }

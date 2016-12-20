@@ -1,8 +1,12 @@
 
 <p> Enter your login and password or
-    <a href="?action=signup">Sign Up</a>
+    <a href="?controller=signUp&action=signUp">Sign Up</a>
 </p>
-<?php if (isset($error) && $error == true) { echo "Veuillez vérifier les champs saisis"; } ?>
+
+<?php foreach ($errors as $error) : ?>
+    <p><?php echo $error ?></p>
+<?php endforeach ?>
+
 <form action="#" method="post">
     <p>
         Login <input type="text" name="login" /> <br />
