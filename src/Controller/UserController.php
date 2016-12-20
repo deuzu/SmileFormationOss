@@ -21,15 +21,15 @@ class UserController extends AbstractController
     {
         if(!isset($_GET['userid'])){
             echo "error on user id";
+            return ;
         }
 
         //Get user to edit
-        $user = getUserById($_GET['userid']);
+        $user = $this->container->get('UsersRepository')->getUserById();
 
         //check the planning data if submitted
-        if(isset($_POST['edit'])){
-
-            $user = array(
+        if(isset($_POST['edit'])) {
+            $user = [
                 'ID' => $user['ID'],
                 'login' => $user['login'],
                 'role' => $_POST['role'],
@@ -37,16 +37,13 @@ class UserController extends AbstractController
                 'lastName' => $_POST['lastName'],
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone']
-            );
+            ];
 
-            $errors = checkEditUserForm();
+            $errors = checkEditUserForm($user);
 
-            if(!$errors){
-                //update the planning data
-                updateUser($user);
-
-                //redirect user to the planning
-                //header("listeController.php");
+            if(!$errors) {
+                $manager = $this->container->get('userManager');
+                $manager->updateUser($user);
             }
         }
 
