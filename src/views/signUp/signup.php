@@ -1,5 +1,5 @@
 <form action="#" method="post">
-    <?php if(isset($errorForm)&& $errorForm==true){echo $errorForm;}?>
+    <?php if(isset($error)&& $error==true){echo $error;}?>
     <p>Last Name: <input type="text" name="lastName" /></p>
     <p>FirstName : <input type="text" name="firstName" /></p>
     <p>Login : <input type="text" name="login" /></p>
