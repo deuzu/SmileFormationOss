@@ -48,7 +48,7 @@ class UserController extends AbstractController
         }
 
         //call view
-        $this->render('users/list.php', ['users' => $users]);
+        $this->render('users/edit.php', ['users' => $users]);
 
     }
 
@@ -60,11 +60,10 @@ class UserController extends AbstractController
         }
 
         //get user to delete
-        $user = getUserById($_GET['userid']);
+        $user = $this->container->get('UsersRepository')->getUserById();
 
-        if(isset($_POST['delete'])){
-
-            $user = array(
+        if(isset($_POST['edit'])) {
+            $user = [
                 'ID' => $user['ID'],
                 'login' => $user['login'],
                 'role' => $_POST['role'],
@@ -72,12 +71,13 @@ class UserController extends AbstractController
                 'lastName' => $_POST['lastName'],
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone']
-            );
+            ];
 
-            deleteUser($user);
+            $manager = $this->container->get('userManager');
+            $manager->deleteUser($user);
         }
 
         //call view
-        include './views/delete.php';
+        $this->render('users/delete.php', ['users' => $users]);
     }
 }
