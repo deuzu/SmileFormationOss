@@ -32,12 +32,12 @@ class UserManager
 
         $stmt = $this->databaseManager->prepare($sql);
 
-        $stmt->bindValue(':login', $user['login'],PDO::PARAM_STR);
-        $stmt->bindValue(':role', $user['role'],PDO::PARAM_STR);
-        $stmt->bindValue(':firstName', $user['firstName'],PDO::PARAM_STR);
-        $stmt->bindValue(':lastName', $user['lastName'],PDO::PARAM_STR);
-        $stmt->bindValue(':email', $user['email'],PDO::PARAM_STR);
-        $stmt->bindValue(':password', $convertedPassword,PDO::PARAM_STR);
+        $stmt->bindValue(':login', $user['login'], PDO::PARAM_STR);
+        $stmt->bindValue(':role', $user['role'], PDO::PARAM_STR);
+        $stmt->bindValue(':firstName', $user['firstName'], PDO::PARAM_STR);
+        $stmt->bindValue(':lastName', $user['lastName'], PDO::PARAM_STR);
+        $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+        $stmt->bindValue(':password', $convertedPassword, PDO::PARAM_STR);
         $stmt->bindValue(':phone', $user['phone'], PDO::PARAM_STR);
 
         return $stmt->execute();
@@ -56,11 +56,11 @@ class UserManager
 
         $stmt = $this->databaseManager->prepare($sql);
 
-        $stmt->bindValue(':role', $user['role'],PDO::PARAM_STR);
-        $stmt->bindValue(':firstName', $user['firstName'],PDO::PARAM_STR);
-        $stmt->bindValue(':lastName', $user['lastName'],PDO::PARAM_STR);
-        $stmt->bindValue(':email', $user['email'],PDO::PARAM_STR);
-        $stmt->bindValue(':phone', $user['phone'],PDO::PARAM_STR);
+        $stmt->bindValue(':role', $user['role'], PDO::PARAM_STR);
+        $stmt->bindValue(':firstName', $user['firstName'], PDO::PARAM_STR);
+        $stmt->bindValue(':lastName', $user['lastName'], PDO::PARAM_STR);
+        $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $user['phone'], PDO::PARAM_STR);
         $stmt->bindParam(':id', $user['ID']);
 
         return $stmt->execute();
