@@ -6,7 +6,6 @@ use SmileOSS\Lab\OOP\Repository\TrainersRepository;
 use SmileOSS\Lab\OOP\Manager\TrainerManager;
 use SmileOSS\Lab\OOP\Form\EditTrainerForm;
 
-
 class TrainerController
 {
     public function listAction()
