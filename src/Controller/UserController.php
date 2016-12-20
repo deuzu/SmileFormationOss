@@ -2,9 +2,8 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
-use SmileOSS\Lab\OOP\Repository;
-require_once './manager/userManager.php';
-require_once './form/editUserForm.php';
+use SmileOSS\Lab\OOP\Repository\UserRepository;
+use SmileOSS\Lab\OOP\Manager\UserManager;
 
 class UserController extends AbstractController
 {
@@ -39,12 +38,9 @@ class UserController extends AbstractController
                 'phone' => $_POST['phone']
             ];
 
-            $errors = checkEditUserForm($user);
+            $manager = $this->container->get('userManager');
+            $manager->updateUser($user);
 
-            if(!$errors) {
-                $manager = $this->container->get('userManager');
-                $manager->updateUser($user);
-            }
         }
 
         //call view

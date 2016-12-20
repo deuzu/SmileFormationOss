@@ -1,4 +1,5 @@
 <?php
+namespace SmileOSS\Lab\OOP\Manager;
 
 require_once "./services/sqlDriverService.php";
 
