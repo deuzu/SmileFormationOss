@@ -2,28 +2,30 @@
 
 namespace SmileOSS\Lab\OOP\Controller;
 
+use SmileOSS\Lab\OOP\Form\LoginForm;
+use SmileOSS\Lab\OOP\Manager\SessionManager;
+
 class LoginController extends AbstractController
 {
     public function loginAction()
     {
         if (isset($_POST['submit'])) {
-            $error = check_form($_POST["login"], $_POST["password"]);
+            $user = ['login' => $_POST['login'], 'password' => $_POST['password']];
+            $error = LoginForm::validate($user);
 
             if (!$error) {
-                $login = $_POST["login"];
-                $password = $_POST["password"];
-
-                createSession($login, $password);
+                $login = $_POST['login'];
+                $password = $_POST['password'];
+                SessionManager::createSession($user);
                 header("Location:?controller=planning&action=list");
             }
         }
-
         $this->render('security/login.php');
     }
 
     public function logoutAction()
     {
-        destroySession();
+        SessionManager::destroySession();
         header("Location:?controller=login&action=login");
     }
 }
