@@ -1,10 +1,8 @@
 <?php
 
-
-// namespace
-require_once './repository/usersRepository.php';
-
-// use UserRepository + Form
+namespace SmileOSS\Lab\OOP\Form;
+use SmileOSS\Lab\OOP\repository\usersRepository;
+use SmileOSS\Lab\OOP\form\SignUpForm;
 
 class SignUpForm
 {
