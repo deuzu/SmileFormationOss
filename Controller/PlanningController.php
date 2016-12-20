@@ -3,10 +3,10 @@
 namespace SmileOSS\Lab\OOP\Controller;
 
 
-require_once './manager/planningManager.php';
-require_once './form/createPlanningForm.php';
-require_once './form/editPlanningForm.php';
-require_once './repository/planningRepository.php';
+//require_once './manager/planningManager.php';
+//require_once './form/createPlanningForm.php';
+//require_once './form/editPlanningForm.php';
+//require_once './repository/planningRepository.php';
 
 class PlanningController extends ParentController
 {
@@ -38,7 +38,7 @@ class PlanningController extends ParentController
             if (!$error) {
                 updatePlanning($_GET["id"], $_POST["Date"], $_POST["Label"], $_POST["Teacher"]);
             }
-            parent::render('./views/editPlanningView.php',$planning);
+            parent::render(__DIR__.'/../views/editPlanningView.php',$planning);
         }
     }
 
@@ -60,6 +60,6 @@ class PlanningController extends ParentController
         } catch (Exception $e) {
             $messageInfo = "Exception " . $e->getMessage();
         }
-        parent::render('./views/createPlanningView.php',$messageInfo);
+        parent::render(__DIR__.'/../views/createPlanningView.php',$messageInfo);
     }
 }
