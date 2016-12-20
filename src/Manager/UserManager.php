@@ -61,7 +61,7 @@ class UserManager
         $stmt->bindValue(':lastName', $user['lastName'], PDO::PARAM_STR);
         $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
         $stmt->bindValue(':phone', $user['phone'], PDO::PARAM_STR);
-        $stmt->bindParam(':id', $user['ID']);
+        $stmt->bindValue(':id', $user['ID']);
 
         return $stmt->execute();
     }
