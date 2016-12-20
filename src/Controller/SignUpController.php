@@ -7,7 +7,7 @@ class SignUpController extends AbstractController
 {    
     public function signUpAction()
     {
-        $errorForm = null;
+        $error = null;
 
         if (isset($_POST['valider'])) {
             if(isset($_POST['lastName'])){ $userLastName  =  $_POST['lastName'] ;}
