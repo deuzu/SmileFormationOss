@@ -1,23 +1,21 @@
 <?php
 
-require_once './repository/usersRepository.php';
-
+namespace SmileOSS\Lab\OOP\FORM;
 
 class LoginForm
 {
-    function check_form($login, $password)
+    public static function validate($user)
     {
-        $error = FALSE;
+        $error = false;
 
-        if ($login == "" || $password == "") {
-
+        if ($user["login"] == "" || $user["password"] == "") {
             $error = "il faut remplir les champs";
-
         }
 
-        if (!userIsOK($login, $password)) {
+        if (!userIsOK($user["login"], $user["password"])) {
             $error = "les identifiants ne sont pas corrects";
         }
+
         return $error;
     }
 }
