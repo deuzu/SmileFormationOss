@@ -5,7 +5,6 @@ use SmileOSS\Lab\OOP\Database\DatabaseManager;
 
 class UserRepository
 {
-
     /**
      * @var DatabaseManager 
      */
