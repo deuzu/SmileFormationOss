@@ -14,8 +14,6 @@ class TrainerController extends AbstractController
         $trainersList = $this->container->get('trainers_repository')->findAll();
         
         $this->render('trainers/list.php', ['trainers' => $trainersList]);
-        
-
     }
 
     public function editAction()
@@ -26,7 +24,7 @@ class TrainerController extends AbstractController
         }
 
         //Get trainer to edit
-        $trainer = getTrainerById($_GET['trainerid']);
+        $trainer = find($_GET['trainerid']);
 
         //check the trainer data if submitted
         if (isset($_POST['edit'])) {
@@ -43,7 +41,7 @@ class TrainerController extends AbstractController
 
             if(!$errors){
                 //update the trainer data
-                updateTrainer($trainer);
+                update($trainer);
 
                 //redirect to the planning
                 //header("listeController.php");
@@ -68,7 +66,7 @@ class TrainerController extends AbstractController
             //get trainer to delete
             $trainerId = getTrainerById($_GET['trainerid']);
             $trainerId = $_GET['trainerid'];
-            deleteTrainer($trainerId);
+            delete($trainerId);
             header("Location:?action=listTrainers");
         }
     }
@@ -81,7 +79,7 @@ class TrainerController extends AbstractController
         try {
             if (isset($_POST['createTrainer'])) {
 
-                createTrainer($_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["phone"]);
+                create($_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["phone"]);
 
                 $messageInfo = "Formateur créé";
 
