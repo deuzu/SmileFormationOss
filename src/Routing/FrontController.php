@@ -12,6 +12,6 @@ class FrontController
         $controller = new $controllerName();
         $methodName = $_GET['action'].'Action';
 
-        return $controller->$methodName();
+        $controller->$methodName();
     }
 }
