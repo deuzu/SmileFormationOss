@@ -22,7 +22,7 @@ abstract class AbstractController
      */
     protected function render($file, array $args = [])
     {
-        $filePath = sprintf('%s/../views/%s', __DIR__, $file);
+        $filePath = sprintf('%s/../Resources/views/%s', __DIR__, $file);
 
         if (!file_exists($filePath)) {
             throw new \Exception(sprintf('The file %s cannot be found', $filePath));
