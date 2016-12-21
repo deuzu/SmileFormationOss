@@ -65,4 +65,37 @@ class PlanningController extends AbstractController
 
         include('planning/create.php');
     }
+
+    public function deleteAction()
+    {
+        if (!isset($_GET['id'])) {
+            echo "error on planning id";
+
+            return;
+        }
+
+        $repository = $this->container->get('planning_repository');
+        $planning = $repository->find($_GET['id']);
+
+        if (isset($_POST['delete'])) {
+            $planning = [
+                'ID' => $_GET['id'],
+                'date' => $_POST['date'],
+                'label' => $_POST['label'],
+                'teach' => $_POST['teach']
+            ];
+
+            $form = new PlanningForm();
+            $form->validate($planning);
+
+            $manager = $this->container->get('planning_manager');
+            $delete = $manager->delete($_GET['id']);
+
+            if ($delete) {
+                header('location:index.php?controller=planning&action=list');
+            }
+        }
+
+        $this->render('planning/delete.php', ['planning' => $planning]);
+    }
 }
