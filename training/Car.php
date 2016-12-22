@@ -1,6 +1,10 @@
 <?php
 
-class Car
+interface Vehicle
+{
+}
+
+class Car implements Vehicle
 {
     /**
      * @var int
@@ -64,8 +68,10 @@ class Car
     {
         $this->wheels = $wheels;
     }
+}
 
-
+class Truck implements Vehicle
+{
 }
 
 class Doctrine
@@ -82,7 +88,32 @@ class Doctrine
     }
 }
 
+class CarFactory
+{
+    /**
+     * @return Car
+     */
+    public function create()
+    {
+        return new Car(1, 2, 3);
+    }
+}
+
 $car = new Car();
+$truck = new Truck();
+
+var_dump($car instanceof Car);
+var_dump($truck instanceof Truck);
+var_dump($car instanceof Vehicle);
+var_dump($truck instanceof Vehicle);
+
+$array = [
+    'eky' => 'valeudvsg',
+    'eky2sd' => 'dfdsvaleudvsg',
+];
+
+$carFactory = new CarFactory();
+$car = $carFactory->create();
 $doctrine = new Doctrine();
 
 // DATABASE

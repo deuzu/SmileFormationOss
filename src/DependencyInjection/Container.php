@@ -24,7 +24,7 @@ class Container
     /**
      * @param $key
      *
-     * @return mixed
+     * @return object
      */
     public function get($key)
     {
