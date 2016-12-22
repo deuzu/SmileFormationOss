@@ -26,7 +26,11 @@ class PlanningRepository
      */
     public function find($id)
     {
-        return $this->databaseManager->prepare("SELECT * FROM planning WHERE date='.$id.'");
+        $statement = $this->databaseManager->prepare("SELECT * FROM planning WHERE id = :id");
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+
+        return $statement->fetch();
     }
 
     /**
