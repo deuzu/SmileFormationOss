@@ -18,10 +18,10 @@ User
 |-------------------|----------|-----------|
 | id                | int      | Yes       |
 | userName          | string   | Yes       |
-| pw                | string   | Yes       |
+| password          | string   | Yes       |
 | role              | string   | Yes       |
-| firstName         | string   | No        |
-| lastName          | string   | No        |
+| firstName         | string   | Yes       |
+| lastName          | string   | Yes       |
 | email             | string   | No        |
 | phone             | string   | No        |
 | coursesSubscribed | Course[] | No        |
