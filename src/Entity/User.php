@@ -162,7 +162,7 @@ class User
     }
     
     /**
-    * @return arraCourse[]y
+    * @return Course[]
     */
     public function getCoursesSubscribed()
     {
@@ -170,30 +170,50 @@ class User
     }
     
     /**
-    * @param $coursesSubscribed
+    * @param Course
     */
-    public function addCoursesSubscribed($coursesSubscribed)
+    public function addCoursesSubscribed(Course $coursesSubscribed)
     {
         $this->coursesSubscribed[] = $coursesSubscribed;
     }
        
     /**
-    * @param $coursesSubscribed
+    * @param $courseUnsubscribed
     */
-    public function removeCoursesSubscribed($courseUnsubscribed)
+    public function removeCoursesSubscribed(Course $courseUnsubscribed)
     {
         foreach ($this->coursesSubscribed as $courseSubscribed) {
             if ($courseSubscribed == $courseUnsubscribed) {
-                unset($this->coursesSubscribed[$courseUnsubscribed]);
+                unset($this->coursesSubscribed[$key]);
             }
         }
     }
     
     /**
-    * @return array
+    * @return Course[]
     */
     public function getCoursesTeached()
     {
         return $this->coursesTeached;        
+    }
+    
+    /**
+    * @param Course
+    */
+    public function addCoursesTeached(Course $courseTeached)
+    {
+        $this->coursesTeached[] = $courseTeached;
+    }
+       
+    /**
+    * @param $coursesSubscribed
+    */
+    public function removeCoursesTeached(Course $courseUnsubscribed)
+    {
+        foreach ($this->coursesTeached as $key => $courseTeached) {
+            if ($courseTeached == $courseUnsubscribed) {
+                unset($this->coursesTeached[$key]);
+            }
+        }
     }
 }
