@@ -43,6 +43,5 @@ class Container
         $this->services['trainers_repository'] = new TrainersRepository($this->services['database_manager']);
         $this->services['user_repository'] = new UserRepository($this->services['database_manager']);
         $this->services['login_validator'] = new LoginValidator($this->services['user_repository']);
-
     }
 }
