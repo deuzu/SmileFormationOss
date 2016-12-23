@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: formation
- * Date: 23/12/16
- * Time: 13:58
- */
 
-class User
+namespace SmileOSS\Lab\OOP\Entity;
+
+class Planning
 {
-    private $ID;
+    private $id;
 
     private $date;
 
@@ -17,23 +13,23 @@ class User
     private $teach;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getID()
+    public function getId()
     {
-        return $this->ID;
+        return $this->$id;
     }
 
     /**
-     * @param mixed $ID
+     * @param int $id
      */
-    public function setID($ID)
+    public function setId($id)
     {
-        $this->ID = $ID;
+        $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
     public function getDate()
     {
@@ -41,7 +37,7 @@ class User
     }
 
     /**
-     * @param mixed $date
+     * @param DateTime $date
      */
     public function setDate($date)
     {
@@ -49,7 +45,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLabel()
     {
@@ -57,7 +53,7 @@ class User
     }
 
     /**
-     * @param mixed $label
+     * @param string $label
      */
     public function setLabel($label)
     {
@@ -65,7 +61,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTeach()
     {
@@ -73,14 +69,11 @@ class User
     }
 
     /**
-     * @param mixed $teach
+     * @param string $teach
      */
     public function setTeach($teach)
     {
         $this->teach = $teach;
     }
-
-
-    // getters
-    // setters
 }
+
