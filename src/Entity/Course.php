@@ -2,7 +2,7 @@
 
 namespace SmileOSS\Lab\OOP\Entity;
 
-class Planning
+class Course
 {
     private $id;
 
