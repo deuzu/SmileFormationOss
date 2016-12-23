@@ -39,7 +39,14 @@ class PlanningManager
      */
     public function delete($id)
     {
-        $this->databaseManager->query("DELETE FROM planning WHERE ID='.$id.'");
+        var_dump($id);
+        //$statement = $this->databaseManager->prepare("DELETE FROM planning WHERE ID='.$id.'");// original
+        //$statement = $this->databaseManager->prepare("DELETE FROM planning WHERE ID=?");
+        $statement = $this->databaseManager->prepare("DELETE FROM planning WHERE ID=$id");
+
+        //$statement->bindParam($id);
+
+        return $statement->execute();
     }
 
     /**
