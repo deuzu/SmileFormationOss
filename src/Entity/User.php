@@ -206,7 +206,7 @@ class User
     }
        
     /**
-    * @param Course $coursesSubscribed
+    * @param Course $courseUnsubscribed
     */
     public function removeCoursesTeached(Course $courseUnsubscribed)
     {
