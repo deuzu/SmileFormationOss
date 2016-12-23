@@ -4,20 +4,37 @@ namespace SmileOSS\Lab\OOP\Entity;
 
 class Course
 {
+    /**
+     * @var int
+     */
     private $id;
 
+    /**
+     * @var \DateTime
+     */
     private $date;
 
+    /**
+     * @var string
+     */
     private $label;
 
-    private $teach;
+    /**
+     * @var User
+     */
+    private $teacher;
+
+    /**
+     * @var User[]
+     */
+    private $students;
 
     /**
      * @return int
      */
     public function getId()
     {
-        return $this->$id;
+        return $this->id;
     }
 
     /**
@@ -29,7 +46,7 @@ class Course
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -37,7 +54,7 @@ class Course
     }
 
     /**
-     * @param DateTime $date
+     * @param \DateTime $date
      */
     public function setDate($date)
     {
@@ -61,19 +78,34 @@ class Course
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getTeach()
+    public function getTeacher()
     {
-        return $this->teach;
+        return $this->teacher;
     }
 
     /**
-     * @param string $teach
+     * @param User $teacher
      */
-    public function setTeach($teach)
+    public function setTeacher($teacher)
     {
-        $this->teach = $teach;
+        $this->teacher = $teacher;
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getStudents()
+    {
+        return $this->students;
+    }
+
+    /**
+     * @param User[] $students
+     */
+    public function setStudents($students)
+    {
+        $this->students = $students;
     }
 }
-
