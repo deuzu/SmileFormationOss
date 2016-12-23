@@ -170,7 +170,7 @@ class User
     }
     
     /**
-    * @param Course
+    * @param Course $coursesSubscribed
     */
     public function addCoursesSubscribed(Course $coursesSubscribed)
     {
@@ -178,11 +178,11 @@ class User
     }
        
     /**
-    * @param $courseUnsubscribed
+    * @param Course $courseUnsubscribed
     */
     public function removeCoursesSubscribed(Course $courseUnsubscribed)
     {
-        foreach ($this->coursesSubscribed as $courseSubscribed) {
+        foreach ($this->coursesSubscribed as $key => $courseSubscribed) {
             if ($courseSubscribed == $courseUnsubscribed) {
                 unset($this->coursesSubscribed[$key]);
             }
@@ -198,7 +198,7 @@ class User
     }
     
     /**
-    * @param Course
+    * @param Course $courseTeached
     */
     public function addCoursesTeached(Course $courseTeached)
     {
@@ -206,7 +206,7 @@ class User
     }
        
     /**
-    * @param $coursesSubscribed
+    * @param Course $coursesSubscribed
     */
     public function removeCoursesTeached(Course $courseUnsubscribed)
     {
