@@ -6,10 +6,10 @@ Course
 | Attribute | Type     | Mandatory |
 |-----------|----------|-----------|
 | id        | int      | Yes       |
-| date      | DateTime | Yes       |
-| label     | String   | Yes       |
-| teacher   | User     | Yes       |
-| students  | User[]   | Yes       |
+| date      | DateTime | No        |
+| label     | string   | Yes       |
+| teacher   | User     | No        |
+| students  | User[]   | No        |
  
 
 User
@@ -17,13 +17,13 @@ User
 | Attribute         | Type     | Mandatory |
 |-------------------|----------|-----------|
 | id                | int      | Yes       |
-| login             | String   | Yes       |
-| pw                | String   | Yes       |
-| role              | String   | Yes       |
-| first_name        | String   | No        |
-| last _name        | String   | No        |
-| email             | String   | No        |
-| phone             | String   | No        |
+| userName          | string   | Yes       |
+| pw                | string   | Yes       |
+| role              | string   | Yes       |
+| firstName         | string   | No        |
+| lastName          | string   | No        |
+| email             | string   | No        |
+| phone             | string   | No        |
 | coursesSubscribed | Course[] | No        |
 | coursesTeached    | Course[] | No        |
 
