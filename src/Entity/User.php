@@ -170,11 +170,11 @@ class User
     }
     
     /**
-    * @param Course $coursesSubscribed
+    * @param Course $courseSubscribed
     */
-    public function addCoursesSubscribed(Course $coursesSubscribed)
+    public function addCoursesSubscribed(Course $courseSubscribed)
     {
-        $this->coursesSubscribed[] = $coursesSubscribed;
+        $this->coursesSubscribed[] = $courseSubscribed;
     }
        
     /**
