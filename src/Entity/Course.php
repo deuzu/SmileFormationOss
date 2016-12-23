@@ -38,14 +38,6 @@ class Course
     }
 
     /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getDate()
@@ -56,7 +48,7 @@ class Course
     /**
      * @param \DateTime $date
      */
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
     }
@@ -88,7 +80,7 @@ class Course
     /**
      * @param User $teacher
      */
-    public function setTeacher($teacher)
+    public function setTeacher(User $teacher)
     {
         $this->teacher = $teacher;
     }
@@ -102,17 +94,17 @@ class Course
     }
 
     /**
-     * @param User[] $student
+     * @param User $student
      */
-    public function addStudent($student)
+    public function addStudent(User $student)
     {
         $this->students = $student;
     }
 
     /**
-     * @param User[] $student
+     * @param User $student
      */
-    public function removeStudent($studentToRemove)
+    public function removeStudent(User $studentToRemove)
     {
         foreach ($this->students as $studentKey => $student) {
 
@@ -120,6 +112,5 @@ class Course
                 unset($this->students[$studentKey]);
             }
         }
-
     }
 }
