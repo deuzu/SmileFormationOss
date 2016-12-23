@@ -107,7 +107,6 @@ class Course
     public function removeStudent(User $studentToRemove)
     {
         foreach ($this->students as $studentKey => $student) {
-
             if ($studentToRemove == $student) {
                 unset($this->students[$studentKey]);
             }
