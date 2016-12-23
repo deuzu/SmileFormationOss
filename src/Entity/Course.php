@@ -102,10 +102,24 @@ class Course
     }
 
     /**
-     * @param User[] $students
+     * @param User[] $student
      */
-    public function setStudents($students)
+    public function addStudent($student)
     {
-        $this->students = $students;
+        $this->students = $student;
+    }
+
+    /**
+     * @param User[] $student
+     */
+    public function removeStudent($studentToRemove)
+    {
+        foreach ($this->students as $studentKey => $student) {
+
+            if ($studentToRemove == $student) {
+                unset($this->students[$studentKey]);
+            }
+        }
+
     }
 }
