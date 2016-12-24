@@ -6,6 +6,19 @@ use SmileOSS\Lab\OOP\Form\SignUpForm;
 
 class SignUpForm
 {
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public static function validate(array $user)
     {
         $userName  = strip_tags($user['lastName']);
@@ -27,7 +40,8 @@ class SignUpForm
             $error[] = 'Le login n\'est pas correct';
         }
         
-        if (userIsOK($userLogin, $userPsw)){
+        
+        if ($this->userRepository->userIsOK($userLogin, $userPsw)){
             $error[] = 'Ces identifiants existent déja';
         }
         
